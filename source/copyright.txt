@@ -1,6 +1,6 @@
 /*
 
-	MicroS javascript library - Copyright 2011 31i73.com
+	MicroS javascript library - Copyright 2010 31i73.com
 
 	MicroS is openly licensed for your pleasure.
 	See http://www.31i73.com/license/publiclibrary
