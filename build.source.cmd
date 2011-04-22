@@ -2,7 +2,7 @@
 
 echo Building source...
 
-del output\micros.js
+if exist output\micros.js del output\micros.js
 type source\copyright.txt >> output\micros.js
 
 echo. >> output\micros.js
