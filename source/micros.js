@@ -1892,9 +1892,40 @@ MicroS.prototype={
 		Parameters:
 		
 			action (function) function to call
+			All extra parameters are passed to the action function
+			
+		Example:
+		
+			(code)
+				<style>
+					.clickeffect{
+						position: absolute;
+						width: ..
+						height: ..
+						background: ..
+						...
+					}
+				</style>
+				
+				<script>
+					// When the user clicks on the page
+					//  spawn a <div class="clickeffect">
+					//  under the cursor
+					//  animate it fading out, floating upwards
+					//  then remove it
+					MicroS.document.listen('mousedown',function(event){	
+						MicroS.body.create('div',{class:'clickeffect'})
+							.style({left:event.cursor[0]+'px',top:event.cursor[1]+'px'})
+							.animate({top:event.cursor[1]-50,opacity:0},1,false,true)
+							.next(function(){this.remove();})
+						;
+					});
+				</script>
+			(end)
 	*/
 	next:function(action){
 		var now = MicroS.frametime();
+		var action_arguments=Array.prototype.slice.call(arguments);action_arguments.shift();
 		for(var I=0;I<this.element.length;I++){
 			var element=this.element[I];
 			var group=new MicroS(element);
@@ -1905,15 +1936,17 @@ MicroS.prototype={
 				(function(group){
 					element._micros_next.push({
 						time:element._micros_animation_end||0,
-						action:function(){action.apply(group);}
+						action:function(){action.apply(group,action_arguments);}
 					});
 				})(group);
 				MicroS._next.push({//push a next event incase it's delay()ed & there's no Animation::next()
 					time:element._micros_animation_end||0,
 					element:element
 				});
-			}else
-				action.apply(group);
+			}else(function(){
+				var group=new MicroS(element);
+				MicroS.next(function(){action.apply(group,action_arguments);});
+			})();
 		}
 		MicroS.event_tick.apply(MicroS);
 		return this;
