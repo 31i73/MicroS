@@ -1965,7 +1965,7 @@ MicroS.prototype={
 	*/
 	fade_in:function(/** number */time, /** number */delay)/** MicroS */{
 		var style_display=this.style('display');
-		var style_visibility=this.style('visible');
+		var style_visibility=this.style('visibility');
 		for(var I=0,length=this.element.length;I<length;I++){
 			var style=this.element[I].style;
 			if(style_display[I]==='none'||style_visibility[I]==='hidden')
