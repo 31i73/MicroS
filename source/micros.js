@@ -1877,8 +1877,7 @@ MicroS.prototype={
 	delay:function(delay){
 		if(delay)for(var I=0;I<this.element.length;I++){
 			var element=this.element[I];
-			//element._micros_animation_end=Math.max((element._micros_animation_end||0),MicroS.frametime())+delay;
-			element._micros_animation_end=(element._micros_animation_end||0)+delay;
+			element._micros_animation_end=Math.max((element._micros_animation_end||0),MicroS.frametime())+delay;
 		}
 		return this;
 	},
