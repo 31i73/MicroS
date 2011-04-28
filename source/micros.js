@@ -295,10 +295,10 @@ MicroS._time_start=MicroS._time();
 	Parameters:
 	
 		action - (function) The function to call
-		self - (object) The object to assign as **this**
+		self - (object) The object to assign as *this*
 		parameter - (object[]; optional) An array of parameters to pass the function
 */
-MicroS.next=function(/** Function **/action, /** object */self, /** object[] */parameter){
+MicroS.next=function(action, self, parameter){
 	setTimeout(function(){
 		action.apply(self,parameter?parameter:[]);
 	},0);
@@ -1000,6 +1000,15 @@ MicroS.prototype={
 			(<MicroS>) If *set* is specified returns the list of elements once again.
 			
 			(bool[]) If *set* is not specified returns a boolean array marking which elements are visible.
+			
+		Examples:
+			(code)
+				var visible = MicroS.id('list').child('li').is_visible();
+				
+				// visible[0] - (boolean) marking whether the first <li> tag is visible
+				// visible[1] - (boolean) marking whether the second...
+				// etc...
+			(end)
 	*/
 	visible:function(set, space){
 		var style_display=this.style('display');
@@ -1876,11 +1885,13 @@ MicroS.prototype={
 	
 	/** Method: next
 	
-		Calls the specified function on each element once all animations and delays have completed
+		Calls the specified function on each element once all animations and delays have completed.
+		
+		When executed *this* is a <MicroS> collection containing just the specific element.
 		
 		Parameters:
 		
-			action: (function) function to call
+			action (function) function to call
 	*/
 	next:function(action){
 		var now = MicroS.frametime();
@@ -1996,16 +2007,10 @@ MicroS.prototype={
 	},
 	/** Method: is_animating
 	
-		Returns an array, marking whether each element is currently animating (or involved in a delay during it's animation sequence).
+		Returns whether any of the elements are currently animating (or involved in a delay during it's animation sequence).
 		
-		Examples:
-			(code)
-				var animating = MicroS.search('a').is_animating();
-				
-				// animating[0] - (boolean) marking whether the first <a> tag is animating
-				// animating[1] - (boolean) marking whether the second...
-				// etc...
-			(end)
+		Returns:
+			(boolean) Whether any of the elements are currently animating
 			
 		See also:
 		
@@ -2019,19 +2024,14 @@ MicroS.prototype={
 		}
 		return false;
 	},
+	
 	/** Method: is_moving
 	
-		Returns an array, marking whether each element is currently moving (if it's top, bottom, left or right properties are animating).
-
-		Examples:
-			(code)
-				var moving = MicroS.search('a').is_moving();
-				
-				// moving[0] - (boolean) marking whether the first <a> tag is moving
-				// moving[1] - (boolean) marking whether the second...
-				// etc...
-			(end)
-
+		Returns whether any of the elements are currently moving (if it's top, bottom, left or right properties are animating).
+		
+		Returns:
+			(boolean) Whether any of the elements are currently moving
+			
 		See also:
 		
 			<MicroS.is_animating>
