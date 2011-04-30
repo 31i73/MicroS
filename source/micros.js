@@ -1,5 +1,5 @@
 /** Header: MicroS
-	MicroS version 11.1 documentation.
+	MicroS version 11.4 documentation.
 */
 /** Namespace: Globals */
 
@@ -123,11 +123,19 @@ MicroS.search=function(tag,css_class,parent,recurse){
 	Variable: MicroS.body
 		(<MicroS>) Collection containing the body element.
 		
+		(*null*) Before the page has loaded.
+		
+		To access this globally, do so within <MicroS.ready> to ensure the page has loaded and it is accessible.
+		
 	Variable: MicroS.cursor
 		(number[2]; readonly) The position of the cursor in the document.
 		
 	Variable: MicroS.document
 		(<MicroS>) Collection containing the document element.
+		
+		(*null*) Before the page has loaded.
+		
+		To access this globally, do so within <MicroS.ready> to ensure the page has loaded and it is accessible.
 		
 	Variable: MicroS.window
 		(<MicroS>) Collection containing the window object.	
@@ -589,10 +597,10 @@ MicroS.prototype={
 				}
 			}
 			return this;
-		} else {
-			var result = [];
-			for (var I = 0; I < this.element.length; I++) {
-				var element = this.element[I];
+		}else{
+			var result=[];
+			for(var I=0;I<this.element.length;I++){
+				var element=this.element[I];
 				result.push(element.getAttribute(name));
 			}
 			return result;
@@ -732,6 +740,8 @@ MicroS.prototype={
 	/** Method: insert_before
 		
 		Inserts children before the element.
+		
+		This <MicroS> Collection must contain at least 1 element. If it contains more only the first will be used.
 		
 		Parameters:
 			children - (<MicroS>) Child elements to insert
@@ -2086,7 +2096,7 @@ MicroS.prototype={
 	
 		Extra events:
 		
-			ready - Fired by <MicroS.window> when the dom has finished loading.
+			ready - Fired by *MicroS.window* when the dom has finished loading.
 				The callback will fire immediately if this moment has already passed.
 			layout - Fired by <MicroS.window> when a content re-layout is required (Either the window is resized, or <MicroS.layout> is called).
 				Used for performing javascript-based content layout.
