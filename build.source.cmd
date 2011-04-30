@@ -6,6 +6,9 @@ if exist output\micros.js del output\micros.js
 type source\copyright.txt >> output\micros.js
 
 echo. >> output\micros.js
+type source\vector.js >> output\micros.js
+
+echo. >> output\micros.js
 type source\micros.js >> output\micros.js
 
 echo. >> output\micros.js
