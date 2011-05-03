@@ -4,10 +4,10 @@
 
 	Example:
 		(code)
-			//If running firefox version 3.6 or later, or google chrome 10.0 or later
-			if(MicroS.browser.firefox>=3.6||MicroS.browser.chrome>=10.0){
-				...
-			}
+		//If running firefox version 3.6 or later, or google chrome 10.0 or later
+		if(MicroS.browser.firefox>=3.6||MicroS.browser.chrome>=10.0){
+			...
+		}
 		(end)
 */
 MicroS.browser={
