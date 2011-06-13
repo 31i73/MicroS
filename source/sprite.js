@@ -4,40 +4,16 @@
 	
 	It consists of a parent, a position (that marks it's centre), a radius, and a graphic.
 	It also features basic collision checking.
-
-	Constructor: Sprite
-	
-		Creates a new sprite.
-	
-		Parameters:
-		
-			parent - (<MicroS>) Sprite parent.
-			position - (number[2]) Sprite position.
-			path - (string) Sprite url.
-			
-		Example:
-		
-			(code)
-			var level = MicroS.id('level');
-			var sprite = new MicroS.Sprite(level, [100,20], 'player.gif');
-			(end)
-
 */
-MicroS.Sprite=function(parent,position,path){
+(MicroS.Sprite=function(parent,position,path){
 	var self=this;
-	/** Variable: parent
-		(<MicroS>; readonly) Parent element. */
 	this.parent=parent;
 	this._path=path;
-	/** Variable: element
-		(<MicroS>) HTML element. */
 	this.element=parent.create('div',{style:'position:absolute;top:'+position[1]+'px;left:'+position[0]+'px;background:url('+path+') no-repeat'});
 	this.collision_scale=[1,1];
 	//this.element=parent.create('img',{style:'position:absolute;top:'+position[1]+'px;left:'+position[0]+'px',src:path});
 	
 	var image_size_cache;if(image_size_cache=MicroS._image_size_cache[path]){
-		/** Variable: radius
-		(number[2]; readonly) The sprite radius. */
 		this.radius=[image_size_cache[0]/2,image_size_cache[1]/2];
 		this.element.style({
 			width:this.radius[0]*2+'px',
@@ -54,8 +30,38 @@ MicroS.Sprite=function(parent,position,path){
 		this._image.listen('load',function(){self._event_loaded.apply(self,[image]);});
 		this._image.element[0].src=path;
 	}
-}
-MicroS.Sprite.prototype={
+}).prototype={
+	/** Constructor: Sprite
+	
+		Creates a new sprite.
+	
+		Parameters:
+		
+			parent - (<MicroS>) Sprite parent.
+			position - (number[2]) Sprite position.
+			path - (string) Sprite url.
+			
+		Example:
+		
+			(code)
+			var level = MicroS.id('level');
+			var sprite = new MicroS.Sprite(level, [100,20], 'player.gif');
+			(end)
+	*/
+	
+	/** Group: properties */
+	/**
+		Variable: element
+			(<MicroS>) HTML element.
+
+		Variable: parent
+			(<MicroS>; readonly) Parent element.
+			
+		Variable: radius
+			(number[2]; readonly) The sprite radius.
+	*/
+
+	/** Group: methods */
 	/** Method: graphic
 	
 		Get or set the current graphic url.
@@ -64,7 +70,7 @@ MicroS.Sprite.prototype={
 			set - (string; optional) The graphic url to set.
 			
 		Returns:
-			(unmber[2]) The current/new graphic url.
+			(number[2]) The current/new graphic url.
 	*/
 	graphic:function(set,animate_size){
 		if(set){
@@ -76,6 +82,7 @@ MicroS.Sprite.prototype={
 		}else
 			return this._path;
 	},
+	
 	/** Method: position
 	
 		Get or set the current position.
@@ -84,7 +91,7 @@ MicroS.Sprite.prototype={
 			set - (number[2]; optional) The position to set.
 			
 		Returns:
-			(unmber[2]) The current/new position.
+			(number[2]) The current/new position.
 	*/
 	position:function(set){//TODO:move to MicroS.position & bubble back from there
 		var element=this.element.element[0];

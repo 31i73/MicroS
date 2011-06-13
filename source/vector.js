@@ -2,7 +2,7 @@
 
 	A class for storing and manipulating 2D Vectors (positions and velocities etc).
 	
-	Note that no methods modify the existing vector, but return their effects as new vectors.
+	Note that all methods return their results as new values and do not modify the existing Vector.
 	
 	All angles are expressed in radians.
 */
@@ -25,9 +25,10 @@
 			(code)
 			var vector = new MicroS.Vector(2,3);
 			(end)
-			
-	Group: properties
-			
+	*/
+	
+	/** Group: properties */
+	/**
 		Variable: x
 			(number) X component.
 			

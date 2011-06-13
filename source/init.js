@@ -1,5 +1,3 @@
-
-
 MicroS.window
 	.listen('resize',function(){
 		MicroS.layout();
