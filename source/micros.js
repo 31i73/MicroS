@@ -587,7 +587,7 @@ MicroS.prototype={
 			for(var I=0;I<this.element.length;I++) {
 				var element=this.element[I];
 
-				if(!name.match(/^(href|src|style)$/)&&(name in element||element[name]!==undefined)){
+				if(!name.match(/^(href|src|style)$/)&&(name in element||element[name]!==undefined))
 					element[name]=value;
 				else{
 					if(value==null)
@@ -2163,7 +2163,8 @@ MicroS.prototype={
 							if(MicroS.is_ready)
 								MicroS.next(callback_wrapper);
 						}else if(event==='layout'&&element===window){
-							MicroS.layout();
+							if(MicroS.is_ready)
+								element.trigger('layout');
 						}else{			
 							if(!MicroS.browser.ie&&(match=event.match(/^mouse(enter|leave)$/))){
 								event='mouse'+{enter:'over',leave:'out'}[match[1]];

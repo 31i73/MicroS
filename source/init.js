@@ -54,6 +54,7 @@ MicroS._event_ready=function(){
 		;			
 		
 		MicroS.window.trigger('ready');
+		MicroS.window.trigger('layout');
 	}
 };
 
