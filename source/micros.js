@@ -2359,4 +2359,4 @@ MicroS.collection_to_array=function(collection){
 	var result=[];
 	if(collection)for(var I=0;I<collection.length;I++)result.push(collection[I]);
 	return result;
-}
+};

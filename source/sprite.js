@@ -157,4 +157,4 @@
 
 		this._image=undefined;
 	}
-}
+};

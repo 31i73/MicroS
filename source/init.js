@@ -56,7 +56,7 @@ MicroS._event_ready=function(){
 		MicroS.window.trigger('ready');
 		MicroS.window.trigger('layout');
 	}
-};
+}
 
 if(document.readyState==='complete'){
 	MicroS.next(MicroS._event_ready);

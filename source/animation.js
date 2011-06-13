@@ -59,4 +59,4 @@ MicroS.Animation.prototype={
 	time_end:function(){
 		return this.time_start+this.time_length;
 	}
-}
+};

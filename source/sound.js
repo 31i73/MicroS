@@ -56,7 +56,7 @@ MicroS.Sound=function(url, play){
 	else
 		this._url='';
 	if(play)this.play();
-}
+};
 
 MicroS.Sound.prototype={
 	
@@ -114,4 +114,4 @@ MicroS.Sound.prototype={
 		}
 		return this._url;
 	}
-}
+};
