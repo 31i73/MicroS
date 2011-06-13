@@ -587,7 +587,7 @@ MicroS.prototype={
 			for(var I=0;I<this.element.length;I++) {
 				var element=this.element[I];
 
-				if(!name.match(/href|src|style/)&&(name in element||element[name]!==undefined))
+				if(!name.match(/^(href|src|style)$/)&&(name in element||element[name]!==undefined)){
 					element[name]=value;
 				else{
 					if(value==null)
